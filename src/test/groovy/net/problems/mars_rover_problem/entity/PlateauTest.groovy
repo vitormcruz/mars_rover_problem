@@ -3,11 +3,10 @@ package net.problems.mars_rover_problem.entity
 import org.junit.Test
 
 import static groovy.test.GroovyAssert.shouldFail
+import static net.problems.mars_rover_problem.constants.PlateauConstants.INVALID_COORDINATE
+import static net.problems.mars_rover_problem.constants.PlateauConstants.VALID_COORDINATE
 
 class PlateauTest {
-
-    public static final int VALID_COORDINATE = 5
-    public static final int INVALID_COORDINATE = -1
 
     @Test
     void "create a new plateau with negative upperX coordinate should fail"(){

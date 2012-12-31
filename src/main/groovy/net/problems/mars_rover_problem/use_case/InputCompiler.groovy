@@ -13,9 +13,7 @@ class InputCompiler {
                                                " is formed by two numbers separated by a space, e.g.: 10 5")
 
         def match = plateauCoordinates =~ COORDINATE_MATCHER
-        def coordinates = [:]
-        coordinates.upperX = Integer.valueOf(match[0])
-        coordinates.upperY = Integer.valueOf(match[1])
-        return coordinates;
+        [upperX:match[0] as Integer,
+         upperY:match[1] as Integer]
     }
 }

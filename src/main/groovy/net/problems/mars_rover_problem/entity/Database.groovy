@@ -12,4 +12,9 @@ public enum Database {
         plateaus.add persistedPlateau
         return persistedPlateau
     }
+
+    def Plateau get(Integer id){
+        if (id == null) throw new IllegalArgumentException("Id cannot be null")
+        return plateaus.get(id-1);
+    }
 }

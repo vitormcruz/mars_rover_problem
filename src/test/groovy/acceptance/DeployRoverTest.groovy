@@ -7,9 +7,7 @@ import net.problems.mars_rover_problem.use_case.InputCompiler
 import org.junit.BeforeClass
 import org.junit.Test
 
-import static acceptance.CreatePlateauTest.VALID_PLATEAU_COORDINATES_DEFINITION
-import static acceptance.CreatePlateauTest.VALID_PLATEAU_X_COORDINATE
-import static acceptance.CreatePlateauTest.VALID_PLATEAU_Y_COORDINATE
+import static net.problems.mars_rover_problem.use_case.PlateauConstants.*
 
 class DeployRoverTest {
 

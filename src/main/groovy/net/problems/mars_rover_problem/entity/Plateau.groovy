@@ -1,14 +1,17 @@
 package net.problems.mars_rover_problem.entity
 
+import groovy.transform.EqualsAndHashCode
+
 /**
  * A plateau where the mars rovers can explore.
  */
+@EqualsAndHashCode
 class Plateau {
-    final Long id;
+    final Integer id;
     final Integer upperX
     final Integer upperY
 
-    private Plateau(Long id, Plateau copy) {
+    private Plateau(Integer id, Plateau copy) {
         this.id = id;
         upperX = copy.upperX
         upperY = copy.upperY
@@ -22,7 +25,7 @@ class Plateau {
         this.upperX = upperX
     }
 
-    Plateau setId(Long id) {
+    Plateau setId(Integer id) {
         new Plateau(id, this)
     }
 }

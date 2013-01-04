@@ -1,7 +1,5 @@
 package net.problems.mars_rover_problem.use_case
 
-import net.problems.mars_rover_problem.entity.Database
-
 /**
  * Use case that deploy a single rover in a specified plateau
  */

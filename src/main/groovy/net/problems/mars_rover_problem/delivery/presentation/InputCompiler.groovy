@@ -1,4 +1,4 @@
-package net.problems.mars_rover_problem.use_case
+package net.problems.mars_rover_problem.delivery.presentation
 /**
  * Compile all the inputs for the mars rover program.
  */

@@ -1,5 +1,6 @@
 package net.problems.mars_rover_problem.use_case
 
+import net.problems.mars_rover_problem.delivery.presentation.InputCompiler
 import org.junit.Test
 
 import static groovy.test.GroovyAssert.shouldFail

@@ -7,10 +7,17 @@ class LandRoversOnMarsPlateauTest {
 
     @Test
     def void "Land a squad of rovers on a mars plateau"(){
-        def landingResult = new LandRoversOnMarsPlateau(55, 100).execute();
+        def plateau = [upperX: 55, upperY: 100]
+        def roversInfo = [  [x:10, y:10, orientation: "S", movements: ["L", "M", "R"]],
+                            [x:10, y:10, orientation: "N", movements: ["L", "M", "R"]] ]
+
+        def landingResult = new LandRoversOnMarsPlateau(plateau, roversInfo).execute();
         assert landingResult != null
         assert landingResult.plateau.upperX == 55
         assert landingResult.plateau.upperY == 100
+
+        assert landingResult.rovers == [   [x: 11, y: 10],
+                                    [x: 9, y: 10]  ]
 
     }
 

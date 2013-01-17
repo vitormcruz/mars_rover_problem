@@ -8,7 +8,9 @@ class LandRoversOnMarsPlateauTest {
     def void "Land a squad of rovers on a mars plateau"(){
         def plateau = [upperX: 55, upperY: 100]
         def roversInfo = [  [x:10, y:10, orientation: "S", movements: ["L", "M", "R"]],
-                            [x:10, y:10, orientation: "N", movements: ["L", "M", "R"]] ]
+                            [x:10, y:10, orientation: "N", movements: ["L", "M", "R"]],
+                            [x:10, y:10, orientation: "E", movements: ["R", "M", "R"]],
+                            [x:10, y:10, orientation: "W", movements: ["R", "M", "R"]]]
 
         def landingResult = new LandRoversOnMarsPlateau(plateau, roversInfo).execute();
         assert landingResult != null
@@ -16,21 +18,24 @@ class LandRoversOnMarsPlateauTest {
         assert landingResult.plateau.upperY == 100
 
         assert landingResult.rovers == [   [x: 11, y: 10, orientation: "S"],
-                                    [x: 9, y: 10, orientation: "N"]  ]
+                                           [x: 9, y: 10, orientation: "N"],
+                                           [x: 10, y: 9, orientation: "W"],
+                                           [x: 10, y: 11, orientation: "E"]]
 
     }
 
-//    @Test
-//    void "deploy rover outside of the plateau coordinates"(){
-//        GroovyAssert.shouldFail(IllegalArgumentException,
-//                {new DeployRover(plateau.id,
-//                                 "${VALID_PLATEAU_X_COORDINATE + 1} ${VALID_PLATEAU_Y_COORDINATE + 1} N\nLM",
-//                                 new InputCompiler()).execute()
-//                })
-//
-//    }
-//
-//    void "deploy rover in a valid plateau coordinate"(){
-//
-//    }
+    @Test
+    void "Land a rover outside of the plateau coordinates"(){
+        def plateau = [upperX: 55, upperY: 100]
+        def roversInfo = [  [x:55, y:100, orientation: "S", movements: ["L", "M", "R"]] ]
+        GroovyAssert.shouldFail(IllegalArgumentException, {new LandRoversOnMarsPlateau(plateau,roversInfo).execute() })
+    }
+
+    @Test
+    void "Move a rover to outside a plateau coordinate"(){
+        def plateau = [upperX: 55, upperY: 100]
+        def roversInfo = [  [x:55, y:100, orientation: "S", movements: ["L", "M", "R"]] ]
+        GroovyAssert.shouldFail(IllegalArgumentException, {new LandRoversOnMarsPlateau(plateau,roversInfo).execute() })
+    }
+
 }

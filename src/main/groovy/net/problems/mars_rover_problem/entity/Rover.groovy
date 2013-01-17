@@ -14,7 +14,7 @@ class Rover {
         if (x < 0) throw new IllegalArgumentException("Rovers x coordinate cannot be negative")
         if (y < 0) throw new IllegalArgumentException("Rovers y coordinate cannot be negative")
         if (x > plateau.upperX) throw new IllegalArgumentException("Rovers x coordinate cannot exceed plateau upperX coordinate")
-        if (y > plateau.upperX) throw new IllegalArgumentException("Rovers y coordinate cannot exceed plateau upperY coordinate")
+        if (y > plateau.upperY) throw new IllegalArgumentException("Rovers y coordinate cannot exceed plateau upperY coordinate")
 
         this.orientation = orientation
         this.plateau = plateau

@@ -117,7 +117,7 @@ class RoverTest {
     @Test
     void "move forward to north at the edge of the plateau"(){
         def plateau = mock(Plateau)
-        when(plateau.upperX).thenReturn(10)
+        when(plateau.upperX).thenReturn(100)
         when(plateau.upperY).thenReturn(10)
         def rover = new Rover(10, 10, N , plateau);
         shouldFail(IllegalArgumentException, { rover.moveForward() })
@@ -141,6 +141,9 @@ class RoverTest {
 
     @Test
     void "move forward to south at the edge of the plateau"(){
+        def plateau = mock(Plateau)
+        when(plateau.upperX).thenReturn(100)
+        when(plateau.upperY).thenReturn(0)
         def rover = new Rover(0, 0, S , plateau);
         shouldFail(IllegalArgumentException, { rover.moveForward() })
     }
@@ -163,6 +166,9 @@ class RoverTest {
 
     @Test
     void "move forward to west at the edge of the plateau"(){
+        def plateau = mock(Plateau)
+        when(plateau.upperX).thenReturn(0)
+        when(plateau.upperY).thenReturn(100)
         def rover = new Rover(0, 0, W , plateau);
         shouldFail(IllegalArgumentException, { rover.moveForward() })
     }
@@ -187,7 +193,7 @@ class RoverTest {
     void "move forward to east at the edge of the plateau"(){
         def plateau = mock(Plateau)
         when(plateau.upperX).thenReturn(10)
-        when(plateau.upperY).thenReturn(10)
+        when(plateau.upperY).thenReturn(100)
         def rover = new Rover(10, 10, E, plateau);
         shouldFail(IllegalArgumentException, { rover.moveForward() })
     }

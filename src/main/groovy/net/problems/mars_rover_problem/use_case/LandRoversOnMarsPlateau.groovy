@@ -26,20 +26,20 @@ class LandRoversOnMarsPlateau {
             rooverInfo.movements.each { movementInfo ->
                 switch (movementInfo){
                     case "L":
-                        rover.rotateLeft()
+                        rover = rover.rotateLeft()
                         break
 
                     case "R":
-                        rover.rotateRight()
+                        rover = rover.rotateRight()
                         break
 
                     case "M":
-                        rover.moveForward()
+                        rover = rover.moveForward()
                         break
                 }
             }
 
-            rovers.add rover.properties
+            rovers.add([x: rover.x, y: rover.y, orientation: rover.orientation.toString()])
         }
         [plateau: plateau.properties,
          rovers: rovers]

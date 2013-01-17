@@ -1,5 +1,4 @@
 package acceptance
-
 import net.problems.mars_rover_problem.use_case.LandRoversOnMarsPlateau
 import org.junit.Test
 
@@ -16,8 +15,8 @@ class LandRoversOnMarsPlateauTest {
         assert landingResult.plateau.upperX == 55
         assert landingResult.plateau.upperY == 100
 
-        assert landingResult.rovers == [   [x: 11, y: 10],
-                                    [x: 9, y: 10]  ]
+        assert landingResult.rovers == [   [x: 11, y: 10, orientation: "S"],
+                                    [x: 9, y: 10, orientation: "N"]  ]
 
     }
 

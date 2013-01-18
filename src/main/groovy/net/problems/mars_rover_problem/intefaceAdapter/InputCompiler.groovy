@@ -12,6 +12,7 @@ class InputCompiler {
                                                           "$ROVER_MOVEMENT_FORMAT"
 
 
+    //TODO comment return DTO
     def compilePlateauCoordinates(String plateauCoordinates) {
         if (!(plateauCoordinates ==~ COORD_FORMAT))
             throw new IllegalArgumentException("Plateau coordinates are in an invalid format. The right format " +
@@ -33,7 +34,7 @@ class InputCompiler {
         def position = roverDeployInstructions =~ ROVER_DEPLOY_INFO_FORMAT
         [x:            position[0][1] as Integer,
          y:            position[0][2] as Integer,
-         orienteation: position[0][3],
+         orientation: position[0][3],
          movements:    position[0][4] as List]
     }
 }

@@ -4,7 +4,6 @@ package net.problems.mars_rover_problem.entity
  * A plateau where the mars rovers can explore.
  */
 class Plateau {
-    final UUID id = UUID.randomUUID();
     final Integer upperX
     final Integer upperY
 

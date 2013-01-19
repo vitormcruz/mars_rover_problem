@@ -17,13 +17,30 @@ class LandRoversOnMarsPlateau {
         this.plateauDTO = plateau
     }
 
-    //TODO comment DTO info
+    /**
+     * Execute the landing with the given information
+     *
+     * <p>
+     * Returned DTO:
+     * <pre>
+     *   [plateau: P,
+     *   rovers: rovers]
+     *
+     *   P -> [upperX:N as Integer,
+     *         upperY:N as Integer]
+     *
+     *   For each rover -> [x: rover.x, y: rover.y, orientation: rover.orientation]
+     * </pre>
+     *
+     * @return A map containing the plateau information along with the rovers positions and orientations after its
+     * movements.
+     */
     def execute(){
         def plateau = new Plateau(plateauDTO.upperX, plateauDTO.upperY)
         def rovers = []
-        roversInfo.each { rooverInfo ->
-            def rover = new Rover(rooverInfo.x, rooverInfo.y, Orientation.valueOf(rooverInfo.orientation), plateau)
-            rooverInfo.movements.each { movementInfo ->
+        roversInfo.each { roverInfo ->
+            def rover = new Rover(roverInfo.x, roverInfo.y, Orientation.valueOf(roverInfo.orientation), plateau)
+            roverInfo.movements.each { movementInfo ->
                 switch (movementInfo){
                     case "L":
                         rover = rover.rotateLeft()
@@ -39,7 +56,7 @@ class LandRoversOnMarsPlateau {
                 }
             }
 
-            rovers.add([x: rover.x, y: rover.y, orientation: rover.orientation.toString()])
+            rovers.add([x: rover.x, y: rover.y, orientation: rover.orientation as String])
         }
         [plateau: plateau.properties,
          rovers: rovers]

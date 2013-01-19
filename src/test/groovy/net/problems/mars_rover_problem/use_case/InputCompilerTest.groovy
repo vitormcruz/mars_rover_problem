@@ -7,12 +7,6 @@ import static groovy.test.GroovyAssert.shouldFail
 
 class InputCompilerTest {
 
-    //TODO remove unnecessary constants? add comment information about string formation?
-    public static final String VALID_ROVER_DEPLOY_INFORMATION_STRING = "5 10 N\nRMLMRMLRLMLRM"
-    private static final String INVALID_PLATEAU_COORD = "abc"
-    private static final String PLATEAU_COORD_WITHOUT_NUMBERS = "DD YY"
-    private static final String PLATEAU_COORD_WITH_TREE_NUMBERS = "1 2 3"
-    private static final String PLATEAU_COORD_WITH_ONE_NUMBER = "1"
     private compiler = new InputCompiler();
     
     @Test
@@ -24,25 +18,25 @@ class InputCompilerTest {
     @Test
     void "compile an invalid plateau coordinate initialization string"(){
         shouldFail(IllegalArgumentException.class,
-                   {compiler.compilePlateauCoordinates(INVALID_PLATEAU_COORD)})
+                   {compiler.compilePlateauCoordinates("abc")})
     }
 
     @Test
     void "compile a plateau coordinate initialization string formed by strings instead of numbers"(){
         shouldFail(IllegalArgumentException.class,
-                   {compiler.compilePlateauCoordinates(PLATEAU_COORD_WITHOUT_NUMBERS)})
+                   {compiler.compilePlateauCoordinates("DD YY")})
     }
 
     @Test
     void "compile a plateau coordinate initialization string formed with more than two numbers"(){
         shouldFail(IllegalArgumentException.class,
-                   {compiler.compilePlateauCoordinates(PLATEAU_COORD_WITH_TREE_NUMBERS)})
+                   {compiler.compilePlateauCoordinates("1 2 3")})
     }
 
     @Test
     void "compile a plateau coordinate initialization string formed with one number"(){
         shouldFail(IllegalArgumentException.class,
-                   {compiler.compilePlateauCoordinates(PLATEAU_COORD_WITH_ONE_NUMBER)})
+                   {compiler.compilePlateauCoordinates("1")})
     }
 
     @Test
@@ -104,9 +98,8 @@ class InputCompilerTest {
 
     @Test
     void "compile a valid rover deploy information string"(){
-        def instructions = compiler.compileRoverDeployInstructions(VALID_ROVER_DEPLOY_INFORMATION_STRING)
+        def instructions = compiler.compileRoverDeployInstructions("5 10 N\nRMLMRMLRLMLRM")
         instructions != null
-        //TODO Should do something about this.
         instructions.x == 5
         instructions.y == 10
         instructions.orientation = "N"

@@ -1,4 +1,4 @@
-package net.problems.mars_rover_problem.delivery.console
+package net.problems.mars_rover_problem.external.delivery.console
 import net.problems.mars_rover_problem.intefaceAdapter.InputCompiler
 import net.problems.mars_rover_problem.use_case.LandRoversOnMarsPlateau
 

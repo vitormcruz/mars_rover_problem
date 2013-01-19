@@ -12,6 +12,21 @@ class LandRoversOnMarsPlateau {
     private def plateauDTO
     private def roversInfo
 
+    /**
+     * Parameters expected:
+     *
+     * <pre>
+     *     plateau ->    [upperX:N as Integer,
+     *                    upperY:N as Integer]
+     *
+     *     roversInfo -> A list of [x:            N as Integer,
+     *                              y:            N as Integer,
+     *                              orientation:  One of ('N', 'S', 'E', 'W'),
+     *                              movements:    List of ('L', 'R', 'M')]
+     *
+     * </pre>
+     *
+     */
     LandRoversOnMarsPlateau(def plateau, def roversInfo) {
         this.roversInfo = roversInfo
         this.plateauDTO = plateau

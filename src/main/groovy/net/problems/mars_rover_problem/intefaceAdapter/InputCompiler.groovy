@@ -46,8 +46,8 @@ class InputCompiler {
      * <pre>
      *   [x:            N as Integer,
      *    y:            N as Integer,
-     *    orientation:  One of (N, S, E, W),
-     *    movements:    List of (L, R, M)]
+     *    orientation:  One of ('N', 'S', 'E', 'W'),
+     *    movements:    List of ('L', 'R', 'M')]
      * </pre>
      *
      * @return A map with the compiled deploy instructions.

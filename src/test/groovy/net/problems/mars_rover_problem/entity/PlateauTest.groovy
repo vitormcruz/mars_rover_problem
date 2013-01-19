@@ -11,12 +11,12 @@ class PlateauTest {
 
     @Test
     void "create a new plateau with negative upperX coordinate should fail"(){
-        shouldFail(IllegalArgumentException, {new Plateau(INVALID_COORDINATE, VALID_COORDINATE)})
+        shouldFail(XCoordinateCannotBeNegativeException, {new Plateau(INVALID_COORDINATE, VALID_COORDINATE)})
     }
 
     @Test
     void "create a new plateau with negative upperY coordinate should fail"(){
-        shouldFail(IllegalArgumentException, {new Plateau(VALID_COORDINATE, INVALID_COORDINATE)})
+        shouldFail(YCoordinateCannotBeNegativeException, {new Plateau(VALID_COORDINATE, INVALID_COORDINATE)})
     }
 
     @Test

@@ -8,8 +8,8 @@ class Plateau {
     final Integer upperY
 
     Plateau(Integer upperX, Integer upperY) {
-        if(upperX < 0 || upperY < 0)
-            throw new IllegalArgumentException("upperX and upperY can only have non-negative values.")
+        if(upperX < 0) throw new XCoordinateCannotBeNegativeException()
+        if (upperY < 0) throw new YCoordinateCannotBeNegativeException()
 
         this.upperY = upperY
         this.upperX = upperX

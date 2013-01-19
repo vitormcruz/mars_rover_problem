@@ -1,4 +1,6 @@
 package acceptance
+
+import net.problems.mars_rover_problem.entity.RoverCoordinatesOutsidePlateauException
 import net.problems.mars_rover_problem.use_case.LandRoversOnMarsPlateau
 import org.junit.Test
 
@@ -28,14 +30,14 @@ class LandRoversOnMarsPlateauTest {
     void "Land a rover outside of the plateau coordinates"(){
         def plateau = [upperX: 55, upperY: 100]
         def roversInfo = [  [x:55, y:100, orientation: "S", movements: ["L", "M", "R"]] ]
-        GroovyAssert.shouldFail(IllegalArgumentException, {new LandRoversOnMarsPlateau(plateau,roversInfo).execute() })
+        GroovyAssert.shouldFail(RoverCoordinatesOutsidePlateauException, {new LandRoversOnMarsPlateau(plateau,roversInfo).execute() })
     }
 
     @Test
     void "Move a rover to outside a plateau coordinate"(){
         def plateau = [upperX: 55, upperY: 100]
         def roversInfo = [  [x:55, y:100, orientation: "S", movements: ["L", "M", "R"]] ]
-        GroovyAssert.shouldFail(IllegalArgumentException, {new LandRoversOnMarsPlateau(plateau,roversInfo).execute() })
+        GroovyAssert.shouldFail(RoverCoordinatesOutsidePlateauException, {new LandRoversOnMarsPlateau(plateau,roversInfo).execute() })
     }
 
 }

@@ -23,11 +23,11 @@ class InputCompiler {
      *  </pre>
      *
      * @return A map with the plateau information.
-     * @throws InvalidStringPlateauCoordinatesFormat if the plateauCoordinates parameter is in an invalid format
+     * @throws InvalidStringPlateauCoordinatesFormatException if the plateauCoordinates parameter is in an invalid format
      */
     def compilePlateauCoordinates(String plateauCoordinates) {
         if (!(plateauCoordinates ==~ COORD_FORMAT))
-            throw new InvalidStringPlateauCoordinatesFormat()
+            throw new InvalidStringPlateauCoordinatesFormatException()
 
         def match = plateauCoordinates =~ COORD_FORMAT
         [upperX:match[0][1] as Integer,
@@ -51,11 +51,11 @@ class InputCompiler {
      * </pre>
      *
      * @return A map with the compiled deploy instructions.
-     * @throws InvalidStringRoverDeployInstructionsFormat if the roverDeployInstructions parameter is in an invalid format.
+     * @throws InvalidStringRoverDeployInstructionsFormatException if the roverDeployInstructions parameter is in an invalid format.
      */
     def compileRoverDeployInstructions(String roverDeployInstructions) {
         if (!(roverDeployInstructions ==~ ROVER_DEPLOY_INFO_FORMAT))
-            throw new InvalidStringRoverDeployInstructionsFormat()
+            throw new InvalidStringRoverDeployInstructionsFormatException()
 
         def position = roverDeployInstructions =~ ROVER_DEPLOY_INFO_FORMAT
         [x:            position[0][1] as Integer,

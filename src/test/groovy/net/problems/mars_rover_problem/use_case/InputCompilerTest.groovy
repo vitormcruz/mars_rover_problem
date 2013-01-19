@@ -1,6 +1,8 @@
 package net.problems.mars_rover_problem.use_case
 
 import net.problems.mars_rover_problem.intefaceAdapter.InputCompiler
+import net.problems.mars_rover_problem.intefaceAdapter.InvalidStringPlateauCoordinatesFormatException
+import net.problems.mars_rover_problem.intefaceAdapter.InvalidStringRoverDeployInstructionsFormatException
 import org.junit.Test
 
 import static groovy.test.GroovyAssert.shouldFail
@@ -11,31 +13,31 @@ class InputCompilerTest {
     
     @Test
     void "compile an empty plateau coordinate initialization string"(){
-        shouldFail(IllegalArgumentException.class,
+        shouldFail(InvalidStringPlateauCoordinatesFormatException.class,
                    {compiler.compilePlateauCoordinates("")})
     }
 
     @Test
     void "compile an invalid plateau coordinate initialization string"(){
-        shouldFail(IllegalArgumentException.class,
+        shouldFail(InvalidStringPlateauCoordinatesFormatException.class,
                    {compiler.compilePlateauCoordinates("abc")})
     }
 
     @Test
     void "compile a plateau coordinate initialization string formed by strings instead of numbers"(){
-        shouldFail(IllegalArgumentException.class,
+        shouldFail(InvalidStringPlateauCoordinatesFormatException.class,
                    {compiler.compilePlateauCoordinates("DD YY")})
     }
 
     @Test
     void "compile a plateau coordinate initialization string formed with more than two numbers"(){
-        shouldFail(IllegalArgumentException.class,
+        shouldFail(InvalidStringPlateauCoordinatesFormatException.class,
                    {compiler.compilePlateauCoordinates("1 2 3")})
     }
 
     @Test
     void "compile a plateau coordinate initialization string formed with one number"(){
-        shouldFail(IllegalArgumentException.class,
+        shouldFail(InvalidStringPlateauCoordinatesFormatException.class,
                    {compiler.compilePlateauCoordinates("1")})
     }
 
@@ -57,21 +59,24 @@ class InputCompilerTest {
 
     @Test
     void "compile an empty rover deploy information string"(){
-        shouldFail(IllegalArgumentException.class, {compiler.compileRoverDeployInstructions("")})
+        shouldFail(InvalidStringRoverDeployInstructionsFormatException, {compiler.compileRoverDeployInstructions("")})
     }
 
     @Test
     void "compile rover deploy information string with invalid coordinates"(){
         ["-11" ,"O"].each {
-            shouldFail(IllegalArgumentException.class, {->compiler.compileRoverDeployInstructions("$it 5 N\nM")})
-            shouldFail(IllegalArgumentException.class, {->compiler.compileRoverDeployInstructions("5 $it N\nM")})
+            shouldFail(InvalidStringRoverDeployInstructionsFormatException,
+                       {->compiler.compileRoverDeployInstructions("$it 5 N\nM")})
+            shouldFail(InvalidStringRoverDeployInstructionsFormatException,
+                       {->compiler.compileRoverDeployInstructions("5 $it N\nM")})
         }
     }
 
     @Test
     void "compile a rover deploy information string with an invalid orientation string"(){
         def invalidOrientationRoverInfo = "5 10 O\nRMLMRMLRLMLRM"
-        shouldFail(IllegalArgumentException.class, {compiler.compileRoverDeployInstructions(invalidOrientationRoverInfo)})
+        shouldFail(InvalidStringRoverDeployInstructionsFormatException,
+                   {compiler.compileRoverDeployInstructions(invalidOrientationRoverInfo)})
     }
 
     @Test
@@ -85,7 +90,8 @@ class InputCompilerTest {
     @Test
     void "compile a rover deploy information string with an invalid movement string"(){
         def invalidOrientationRoverInfo = "5 10 N\nO"
-        shouldFail(IllegalArgumentException.class, {compiler.compileRoverDeployInstructions(invalidOrientationRoverInfo)})
+        shouldFail(InvalidStringRoverDeployInstructionsFormatException,
+                   {compiler.compileRoverDeployInstructions(invalidOrientationRoverInfo)})
     }
 
     @Test

@@ -22,14 +22,14 @@ class RoverTest {
     void "create rover outside x coordinate from plateau"(){
         def plateau = mock(Plateau)
         when(plateau.upperX).thenReturn(9)
-        shouldFail(IllegalArgumentException, { new Rover(10, 10, N, plateau)})
+        shouldFail(RoverCoordinatesOutsidePlateauException, { new Rover(10, 10, N, plateau)})
     }
 
     @Test
     void "create rover outside y coordinate from plateau"(){
         def plateau = mock(Plateau)
         when(plateau.upperY).thenReturn(9)
-        shouldFail(IllegalArgumentException, { new Rover(10, 10, N, plateau)})
+        shouldFail(RoverCoordinatesOutsidePlateauException, { new Rover(10, 10, N, plateau)})
     }
 
     @Test
@@ -37,17 +37,17 @@ class RoverTest {
         def plateau = mock(Plateau)
         when(plateau.upperX).thenReturn(9)
         when(plateau.upperY).thenReturn(9)
-        shouldFail(IllegalArgumentException, { new Rover(10, 10, N, plateau)})
+        shouldFail(RoverCoordinatesOutsidePlateauException, { new Rover(10, 10, N, plateau)})
     }
 
     @Test
     void "create rover with a negative x coordinate"(){
-        shouldFail(IllegalArgumentException, { new Rover(-1, 10, N, plateau)})
+        shouldFail(XCoordinateCannotBeNegativeException, { new Rover(-1, 10, N, plateau)})
     }
 
     @Test
     void "create rover with a negative y coordinate"(){
-        shouldFail(IllegalArgumentException, { new Rover(10, -1, N, plateau)})
+        shouldFail(YCoordinateCannotBeNegativeException, { new Rover(10, -1, N, plateau)})
     }
 
     @Test
@@ -120,7 +120,7 @@ class RoverTest {
         when(plateau.upperX).thenReturn(100)
         when(plateau.upperY).thenReturn(10)
         def rover = new Rover(10, 10, N , plateau);
-        shouldFail(IllegalArgumentException, { rover.moveForward() })
+        shouldFail(RoverCoordinatesOutsidePlateauException, { rover.moveForward() })
     }
 
     @Test
@@ -145,7 +145,7 @@ class RoverTest {
         when(plateau.upperX).thenReturn(100)
         when(plateau.upperY).thenReturn(0)
         def rover = new Rover(0, 0, S , plateau);
-        shouldFail(IllegalArgumentException, { rover.moveForward() })
+        shouldFail(YCoordinateCannotBeNegativeException, { rover.moveForward() })
     }
 
     @Test
@@ -170,7 +170,7 @@ class RoverTest {
         when(plateau.upperX).thenReturn(0)
         when(plateau.upperY).thenReturn(100)
         def rover = new Rover(0, 0, W , plateau);
-        shouldFail(IllegalArgumentException, { rover.moveForward() })
+        shouldFail(XCoordinateCannotBeNegativeException, { rover.moveForward() })
     }
 
     @Test
@@ -195,6 +195,6 @@ class RoverTest {
         when(plateau.upperX).thenReturn(10)
         when(plateau.upperY).thenReturn(100)
         def rover = new Rover(10, 10, E, plateau);
-        shouldFail(IllegalArgumentException, { rover.moveForward() })
+        shouldFail(RoverCoordinatesOutsidePlateauException, { rover.moveForward() })
     }
 }

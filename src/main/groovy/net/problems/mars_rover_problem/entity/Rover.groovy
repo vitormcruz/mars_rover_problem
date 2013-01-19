@@ -9,12 +9,10 @@ class Rover {
     final Orientation orientation
     final Plateau plateau
 
-    //TODO use specific exception always
     Rover(Integer x, Integer y, Orientation orientation, Plateau plateau) {
-        if (x < 0) throw new IllegalArgumentException("Rovers x coordinate cannot be negative")
-        if (y < 0) throw new IllegalArgumentException("Rovers y coordinate cannot be negative")
-        if (x > plateau.upperX) throw new IllegalArgumentException("Rovers x coordinate cannot exceed plateau upperX coordinate")
-        if (y > plateau.upperY) throw new IllegalArgumentException("Rovers y coordinate cannot exceed plateau upperY coordinate")
+        if (x < 0) throw new XCoordinateCannotBeNegativeException()
+        if (y < 0) throw new YCoordinateCannotBeNegativeException()
+        if (x > plateau.upperX || y > plateau.upperY) throw new RoverCoordinatesOutsidePlateauException()
 
         this.orientation = orientation
         this.plateau = plateau

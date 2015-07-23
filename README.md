@@ -1,3 +1,5 @@
+![Build Status](https://travis-ci.org/vitormcruz/mars_rover_problem.svg?branch=master)
+
 mars_rover_problem
 ==================
 
